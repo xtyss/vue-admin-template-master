@@ -37,6 +37,7 @@ export const constantRouterMap = [
     }]
   },
   {
+    // 页面实际路由为path相加
     path: '/teacher',
     component: Layout,
     redirect: '/example/table',
@@ -50,10 +51,17 @@ export const constantRouterMap = [
         meta: { title: '讲师列表', icon: 'table' }
       },
       {
-        path: 'tree',
+        path: 'save',
         name: 'Tree',
         component: () => import('@/views/edu/teacher/add'),
         meta: { title: '新增讲师', icon: 'tree' }
+      },
+      {
+        path: 'save/:id',
+        name: 'Tree',
+        component: () => import('@/views/edu/teacher/add'),
+        meta: { title: '讲师信息修改', icon: 'tree' },
+        hidden:"true"
       }
     ]
   },

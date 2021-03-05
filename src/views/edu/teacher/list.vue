@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+    <el-form :inline="true" class="demo-form-inline">
       <el-form-item label="讲师名称">
         <el-input v-model="queryTeacher.name" placeholder="讲师名称"></el-input>
       </el-form-item>
@@ -60,7 +60,7 @@
     <el-table-column prop="gmtCreate" label="添加时间" width="160"/>
     <el-table-column label="操作" width="200" align="center">
       <template slot-scope="scope">
-        <router-link :to="'/edu/teacher/edit/'+scope.row.id">
+        <router-link :to="'/teacher/save/'+scope.row.id">
           <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
         </router-link>
         <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)">删除</el-button>
