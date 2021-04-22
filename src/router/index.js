@@ -40,7 +40,7 @@ export const constantRouterMap = [
     // 页面实际路由为path相加
     path: '/teacher',
     component: Layout,
-    redirect: '/example/table',
+    redirect: '/teacher/tree',
     name: '讲师管理',
     meta: { title: '讲师管理', icon: 'example' },
     children: [
@@ -66,27 +66,68 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/example',
+    // 页面实际路由为path相加
+    path: '/edu/subject',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    name: '课程分类管理',
+    meta: { title: '课程分类管理', icon: 'nested' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'list',
+        name: '课程分类展示',
+        component: () => import('@/views/edu/subject/list'),
+        meta: { title: '课程分类展示', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'importSubject',
+        name: '添加课程列表',
+        component: () => import('@/views/edu/subject/import'),
+        meta: { title: '添加课程列表', icon: 'table' }
       }
     ]
   },
-
+// 课程管理
+  {
+    path: '/edu/course',
+    component: Layout,
+    name: 'Course',
+    meta: { title: '课程管理', icon: 'form' },
+    children: [
+      {
+        path: 'list',
+        name: 'EduCourseList',
+        component: () => import('@/views/edu/course/list'),
+        meta: { title: '课程列表' }
+      },
+      {
+        path: 'info',
+        name: 'EduCourseInfo',
+        component: () => import('@/views/edu/course/info'),
+        meta: { title: '课程信息' }
+      },
+      {
+        path: 'info/:id',
+        name: 'EduCourseInfoEdit',
+        component: () => import('@/views/edu/course/info'),
+        meta: { title: '编辑课程基本信息', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'chapter/:id',
+        name: 'EduCourseChapterEdit',
+        component: () => import('@/views/edu/course/chapter'),
+        meta: { title: '编辑课程大纲', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'publish/:id',
+        name: 'EduCoursePublishEdit',
+        component: () => import('@/views/edu/course/publish'),
+        meta: { title: '发布课程', noCache: true },
+        hidden: true
+      }
+    ]
+  },
   {
     path: '/form',
     component: Layout,
@@ -99,7 +140,6 @@ export const constantRouterMap = [
       }
     ]
   },
-
   {
     path: '/nested',
     component: Layout,
