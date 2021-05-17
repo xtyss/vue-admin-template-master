@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import subject from "@/api/edu/subject/subject";
+import subject from '@/api/edu/subject/subject'
 
 export default {
-  name:"list",
+  name: 'List',
   data() {
     return {
       filterText: '',
@@ -56,7 +56,7 @@ export default {
       if (!value) return true
       return data.label.indexOf(value) !== -1
     },
-    getData(){
+    getData() {
       subject.querySubjectList().then(value => {
         console.log(value)
         this.data = value.data.list

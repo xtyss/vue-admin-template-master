@@ -18,7 +18,7 @@
           :on-error="fileUploadError"
           :disabled="importBtnDisabled"
           :limit="1"
-          :action="this.BASE_API+'/serviceedu/eduSubject/addSubject'"
+          :action="BASE_API+'/serviceedu/eduSubject/addSubject'"
           name="file"
           accept="application/vnd.ms-excel">
           <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
@@ -36,23 +36,23 @@
 
 <script>
 export default {
-  name: "import",
-  data(){
-    return{
-      importBtnDisabled:false,
-      loading:false,
-      BASE_API:process.env.BASE_API,
-      OSS_PATH:process.env.OSS_PATH
+  name: 'Import',
+  data() {
+    return {
+      importBtnDisabled: false,
+      loading: false,
+      BASE_API: process.env.BASE_API,
+      OSS_PATH: process.env.OSS_PATH
     }
   },
-  methods:{
-    fileUploadSuccess(){
+  methods: {
+    fileUploadSuccess() {
 
     },
-    fileUploadError(){},
-    submitUpload(){
-      this.$refs.upload.submit();
-    },
+    fileUploadError() {},
+    submitUpload() {
+      this.$refs.upload.submit()
+    }
 
   }
 

@@ -1,10 +1,10 @@
-import request from "@/utils/request";
+import request from '@/utils/request'
 
 export default {
-  querySubjectList (){
+  querySubjectList() {
     return request({
-      url:`/serviceedu/eduSubject/getSubjectList`,
-      method:'get'
+      url: `/eduService/eduSubject/getSubjectList`,
+      method: 'get'
     })
   }
 }

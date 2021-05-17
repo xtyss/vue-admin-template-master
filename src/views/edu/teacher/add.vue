@@ -5,7 +5,7 @@
         <el-input v-model="teacher.name"/>
       </el-form-item>
       <el-form-item label="讲师排序">
-        <el-input-number v-model="teacher.sort" controls-position="right" :min='0'/>
+        <el-input-number v-model="teacher.sort" :min="0" controls-position="right"/>
       </el-form-item>
       <el-form-item label="讲师头衔">
         <el-select v-model="teacher.level" clearable placeholder="请选择">
@@ -56,17 +56,17 @@
 </template>
 
 <script>
-import teacherApi from '@/api/edu/teacher/teacher';
-import ImageCropper from '@/components/ImageCropper';
-import PanThumb from '@/components/PanThumb';
+import teacherApi from '@/api/edu/teacher/teacher'
+import ImageCropper from '@/components/ImageCropper'
+import PanThumb from '@/components/PanThumb'
 
 export default {
-  components:{ImageCropper,PanThumb},
-  name: "add",
-  data(){
-    return{
-      saveBtnDisabled:false,// 提交按钮是否可用
-      teacher:{
+  name: 'Add',
+  components: { ImageCropper, PanThumb },
+  data() {
+    return {
+      saveBtnDisabled: false, // 提交按钮是否可用
+      teacher: {
         name: '',
         sort: 0,
         level: 1,
@@ -79,75 +79,73 @@ export default {
       BASE_API: process.env.BASE_API
     }
   },
-  mounted() {
-    this.init()
-  },
-  watch:{
-    $route(to,from){
+  watch: {
+    $route(to, from) {
       console.log(to)
       console.log(from)
       this.init()
     }
   },
-  methods:{
-    close(){
-      this.imagecropperShow=false;
+  mounted() {
+    this.init()
+  },
+  methods: {
+    close() {
+      this.imagecropperShow = false
       // 刷新组件
-      this.imagecropperKey+=1
+      this.imagecropperKey += 1
     },
-    cropSuccess(data){
-      this.imagecropperShow=false;
+    cropSuccess(data) {
+      this.imagecropperShow = false
 
       this.teacher.avatar = data.url
       // 刷新组件
-      this.imagecropperKey+=1
+      this.imagecropperKey += 1
     },
-    init(){
-      let teacherID = this.$route.params.id
-      if (teacherID){
-        teacherApi.queryTeacherByID(teacherID).then(res=>{
+    init() {
+      const teacherID = this.$route.params.id
+      if (teacherID) {
+        teacherApi.queryTeacherByID(teacherID).then(res => {
           this.teacher = res.data.teacher
         })
-      }else {
+      } else {
         this.teacher = {}
         this.teacher.avatar = 'https://ys-school.oss-cn-hangzhou.aliyuncs.com/2021/03/0535f8a9f460dc41aea465cf7f9226ec08file.png'
       }
     },
-    saveOrUpdate(){
-      let teacherID = this.$route.params.id
-      if (teacherID){
+    saveOrUpdate() {
+      const teacherID = this.$route.params.id
+      if (teacherID) {
         this.updateTeacher()
-      }else {
+      } else {
         this.saveTeacher()
       }
     },
-    saveTeacher(){
+    saveTeacher() {
       teacherApi.addTeacher(this.teacher)
-        .then(res=>{
+        .then(res => {
           // 提示信息
           this.$message({
-            type: "success",
-            message: "添加成功"
+            type: 'success',
+            message: '添加成功'
           })
-          this.$router.push({path:"/teacher/table"})
+          this.$router.push({ path: '/teacher/table' })
         })
     },
-    updateTeacher(){
-      teacherApi.updateTeacher(this.teacher).then(res=>{
+    updateTeacher() {
+      teacherApi.updateTeacher(this.teacher).then(res => {
         this.$message({
-          type:"success",
-          message:"修改成功"
+          type: 'success',
+          message: '修改成功'
         })
 
-        //跳转回列表
+        // 跳转回列表
         this.$router.push({
-          path:"/teacher/table"
+          path: '/teacher/table'
         })
       })
     }
   }
-
-
 
 }
 </script>

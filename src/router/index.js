@@ -52,7 +52,7 @@ export const constantRouterMap = [
       },
       {
         path: 'save',
-        name: 'Tree',
+        name: 'addTeacher',
         component: () => import('@/views/edu/teacher/add'),
         meta: { title: '新增讲师', icon: 'tree' }
       },
@@ -61,7 +61,7 @@ export const constantRouterMap = [
         name: 'Tree',
         component: () => import('@/views/edu/teacher/add'),
         meta: { title: '讲师信息修改', icon: 'tree' },
-        hidden:"true"
+        hidden: 'true'
       }
     ]
   },
@@ -86,7 +86,7 @@ export const constantRouterMap = [
       }
     ]
   },
-// 课程管理
+  // 课程管理
   {
     path: '/edu/course',
     component: Layout,
@@ -97,13 +97,13 @@ export const constantRouterMap = [
         path: 'list',
         name: 'EduCourseList',
         component: () => import('@/views/edu/course/list'),
-        meta: { title: '课程列表' }
+        meta: { title: '课程列表', icon: 'table' }
       },
       {
         path: 'info',
         name: 'EduCourseInfo',
         component: () => import('@/views/edu/course/info'),
-        meta: { title: '课程信息' }
+        meta: { title: '添加课程', icon: 'table' }
       },
       {
         path: 'info/:id',
