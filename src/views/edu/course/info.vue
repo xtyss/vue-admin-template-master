@@ -58,10 +58,10 @@
       </el-form-item>
 
       <!-- 课程简介 -->
+      <!-- 课程简介-->
       <el-form-item label="课程简介">
-        <el-input v-model="courseInfo.description" placeholder=" "/>
+        <tinymce :height="300" v-model="courseInfo.description"/>
       </el-form-item>
-      <!-- 课程封面 TODO -->
       <!-- 课程封面-->
       <el-form-item label="课程封面">
         <el-upload
@@ -88,8 +88,10 @@
 <script>
 import course from '@/api/edu/subject/course'
 import subject from '@/api/edu/subject/subject'
+import Tinymce from '@/components/Tinymce'
 
 export default {
+  components: { Tinymce },
   data() {
     return {
       saveBtnDisabled: false, // 保存按钮是否禁用
